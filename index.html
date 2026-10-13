@@ -3268,10 +3268,10 @@ function renderInner() {
   RATINGS = computeRatings();
   const tr = $("#topRight");
   const myR = ratingOf(ME);
-  tr.replaceChildren(
+  tr.replaceChildren(...[
     view.screen !== "intro" ? h("button", { class: "rankchip", type: "button", title: "The ladder", onclick: () => go("ladder") }, h("i", { class: "dotp" }), tierOf(myR), h("span", { class: "mp" }, myR + " MP")) : null,
     view.screen !== "intro" ? h("button", { class: "iconbtn", type: "button", title: "Board style", "aria-label": "Board style", onclick: () => go("style") }, h("span", { class: "stylei", "aria-hidden": "true" }, h("i"), h("i"), h("i"), h("i"))) : null,
-    h("button", { class: "iconbtn", type: "button", title: store.get("sound", true) ? "Sound on" : "Sound off", "aria-label": store.get("sound", true) ? "Mute sounds" : "Turn sounds on", onclick: () => { store.set("sound", !store.get("sound", true)); render(); } }, store.get("sound", true) ? "♪" : "–"));
+    h("button", { class: "iconbtn", type: "button", title: store.get("sound", true) ? "Sound on" : "Sound off", "aria-label": store.get("sound", true) ? "Mute sounds" : "Turn sounds on", onclick: () => { store.set("sound", !store.get("sound", true)); render(); } }, store.get("sound", true) ? "♪" : "–")].filter(Boolean));
   if (view.screen === "style") renderStyle();
   else if (view.screen === "rivalry") renderRivalry(view.id);
   else if (view.screen === "puzzles") renderPuzzles();
